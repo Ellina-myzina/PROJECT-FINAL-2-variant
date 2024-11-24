@@ -61,3 +61,44 @@ class Client:
             order = input(f"Клиент {self.name} введите блюдо из меню: ")
             self.list_order.append(order)
         del self.list_order[len(self.list_order)-1]
+
+class Order:
+    def __init__(self,client):
+        self.name = client.name
+        self.adress = client.adress
+        self.list_order = client.list_order
+        self.deliv_order = "Собран"
+        
+    def __str__(self):
+        return f"{self.name}"
+        return f"{self.adress}"
+        
+    def sum_order(self,menu):
+        s = 0
+        for o_item in self.list_order:
+            for m_item in menu:
+                if o_item == m_item.name:
+                    s += m_item.price
+                    break
+            else:
+                print(f"\nБлюда {o_item} нет в меню!")
+        return f"Итоговая сумма заказа: {s} руб."
+        
+    def print_order(self,menu):
+        print(f"Заказ клиента {self.name}:\n")
+        for o_item in self.list_order:
+            for m_item in menu:
+                if o_item == m_item.name:
+                    print(f"{o_item} - {m_item.price} руб.")
+        print(f"\n{self.sum_order(menu)}")
+
+    def delivery_order(self):
+        print(f"Статус доставки заказа клиента {self.name} по адресу {self.adress}:\n")
+        time.sleep(3)
+        print(f"{self.deliv_order}")
+        self.deliv_order = "В пути"
+        time.sleep(3)
+        print(f"{self.deliv_order}")
+        self.deliv_order = "Доставлен"
+        time.sleep(3)
+        print(f"{self.deliv_order}")
