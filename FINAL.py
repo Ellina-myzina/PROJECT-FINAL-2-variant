@@ -102,3 +102,46 @@ class Order:
         self.deliv_order = "Доставлен"
         time.sleep(3)
         print(f"{self.deliv_order}")
+
+dish_1 = Menu("Пицца", "Пицца Маргарита" , 300, 400, ["Соус-пицца", "Колбаса","Маслины","Помидоры","Моцарелла","Приправы"])
+dish_2 = Menu("Пицца", "4 сыра" , 200, 350, ["Соус-пицца", "Моцарелла","Пармезан","Горгонзола","Эмменталь","Приправы"])
+dish_3 = Menu("Пицца", "Пицца Пепперонни" , 250, 450, ["Соус-пицца", "Пепперони","Моцарелла","Приправы"])
+dish_4 = Menu("Картофель", "Картошка фри" ,80, 100,["Картофель","Соль","Приправы"])
+dish_5 = Menu("Напиток", "Кока-кола" ,150, 500, ["Вода","Сироп-кола"])
+dish_6 = Menu("Соус", "Чесночный соус" ,50, 25, ["Сметана","Чеснок"])
+
+menu = []
+
+for i in [dish_1,dish_2,dish_3,dish_4,dish_5,dish_6]:
+    i.add_menu(menu,i)
+
+client = Client()
+
+client.input_data()
+
+print("-----------------------------------")
+
+restaurant = Restaurant("KFC",menu,client)
+print(f"Название ресторана: {restaurant.title}\nМеню ресторна {restaurant.title}:\n")
+
+for i in [dish_1,dish_2,dish_3,dish_4,dish_5,dish_6]:
+    i.print_menu(i)
+
+print("-----------------------------------")
+
+client.input_order()
+
+print("-----------------------------------")
+
+order = Order(client)
+order.print_order(menu)
+
+print("-----------------------------------")
+time.sleep(3)
+restaurant.payment_order()
+print("-----------------------------------")
+time.sleep(3)
+restaurant.accept_order()
+print("-----------------------------------")
+time.sleep(3)
+order.delivery_order()
