@@ -59,7 +59,7 @@ class Client:
         order = ""
         while order != ".":
             order = input(f"Клиент {self.name} введите блюдо из меню: ")
-            self.list_order.append(order)
+            self.list_order.append(order.capitalize())
         del self.list_order[len(self.list_order)-1]
 
 class Order:
@@ -79,9 +79,6 @@ class Order:
             for m_item in menu:
                 if o_item == m_item.name:
                     s += m_item.price
-                    break
-            else:
-                print(f"\nБлюда {o_item} нет в меню!")
         return f"Итоговая сумма заказа: {s} руб."
         
     def print_order(self,menu):
@@ -90,6 +87,9 @@ class Order:
             for m_item in menu:
                 if o_item == m_item.name:
                     print(f"{o_item} - {m_item.price} руб.")
+                    break
+            else:
+                print(f"\nБлюда {o_item} нет в меню!")
         print(f"\n{self.sum_order(menu)}")
 
     def delivery_order(self):
