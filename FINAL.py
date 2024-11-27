@@ -16,7 +16,7 @@ class Menu:
 
     def print_menu(self,dish):
         print(dish)
-        print(f"Состав блюда: {", ".join(map(str,self.ingredients))}\n")
+        print(f"Состав блюда: {", ".join(self.ingredients)}\n")
 
 class Restaurant:
     def __init__(self,title,menu,client):
